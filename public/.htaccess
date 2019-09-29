@@ -1,0 +1,13 @@
+#lock to Socialab
+#order deny,allow
+#deny from all
+#allow from 213.249.49.186
+
+
+ErrorDocument 403 /403.php
+
+
+#Redirect to www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]

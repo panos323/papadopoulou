@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Blank</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <link rel="icon" href="images/favicon.png">
+
+
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/anim_style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
+
+</head>
+
+<body>
+
+<!-- login -->
+
+<div id="login_div" style="position: absolute; z-index: 100; width: 100%; height: 100vh; background-color: rgba(5, 70, 146, 0.9); background-image: url(images/kv_front.png), url(images/kv_back.png);background-position: left top, left top;background-repeat: no-repeat, no-repeat; background-size: cover; display: none;">
+  <a onclick="loginDivClose()">
+    <div style="position: fixed; top: 0; right: 0; width: 40px; height: 40px; background-color: #fff; margin: 2%; font-size: 30px; padding: 5px; cursor: pointer;"><h1>&times;</h1></div>
+  </a>
+  <div class="gridrow">
+    <div class="gridcolumn gridcolumn-7"></div>
+    <div class="gridcolumn gridcolumn-3" style="height: 100vh; overflow-y: auto;">
+      <div class="element" style="color: #fff;">
+        <h3 style="padding: 0px 10%;">Συνδέσου με το όνομα χρήστη και τον κωδικό σου για να πάρεις άλλη μία φορά μέρος στον Μεγάλο Διαγωνισμό της DUREX!</h3>
+        <h1 style="color: #fff; padding: 3%;font-weight: 300;">Login</h1>
+        <input type="text" name="username" class="input_style" placeholder="Το Email σου">
+        <input type="text" name="password" class="input_style" placeholder="Ο κωδικός σου">
+        <div style="width: 80%; border-radius: 5px; padding: 10px; margin: 10px auto; text-align: center; color: #fff; background-color: #f7941e">
+          <h3>Κάνε σύνδεση</h3>
+        </div>
+        <div style="padding: 10px 0px;">ή</div>
+        <div style="width: 80%; border: solid 2px #fff; border-radius: 5px; padding: 10px; margin: 0px auto; text-align: center; color: #fff;">
+          <i class="fab fa-facebook-f" style="padding-right: 20px;"></i> Σύνδεση μέσω facebook
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- register -->
+
+<div id="register_div" style="position: absolute; z-index: 100; width: 100%; height: 100vh; background-color: rgba(5, 70, 146, 0.9); background-image: url(images/kv_front.png), url(images/kv_back.png);background-position: left top, left top;background-repeat: no-repeat, no-repeat; background-size: cover;  display: none;">
+  <a onclick="registerDivClose()">
+    <div style="position: fixed; top: 0; right: 0; width: 40px; height: 40px; background-color: #fff; margin: 2%; font-size: 30px; padding: 5px;  cursor: pointer;"><h1>&times;</h1></div>
+  </a>
+  <div class="gridrow">
+    <div class="gridcolumn gridcolumn-7"></div>
+    <div class="gridcolumn gridcolumn-3" style="height: 100vh; overflow-y: auto;">
+      <div class="element" style="color: #fff;">
+        <h3 style="padding: 0px 10%;">Κάνε την εγγραφή σου για να πάρεις μέρος στον Μεγάλο Διαγωνισμό της DUREX & να κερδίσεις ΜΕΓΑΛΑ ΔΩΡΑ!</h3>
+        <h1 style="color: #fff; padding: 3%; font-weight: 300;">Register</h1>
+        <input type="text" name="username" class="input_style" placeholder="Το Email σου">
+        <input type="text" name="password" class="input_style" placeholder="Ο κωδικός σου">
+        <input type="text" name="password" class="input_style" placeholder="Επανάληψη κωδικού">
+        <div style="width: 80%; border-radius: 5px; padding: 10px; margin: 10px auto; text-align: center; color: #fff; background-color: #f7941e">
+          <h3>Εγγραφή</h3>
+        </div>
+        <div style="padding: 10px 0px;">ή</div>
+        <div style="width: 80%; border: solid 2px #fff; border-radius: 5px; padding: 10px; margin: 0px auto; text-align: center; color: #fff;">
+          <i class="fab fa-facebook-f" style="padding-right: 20px;"></i> Σύνδεση μέσω facebook
+        </div>
+        <p style="text-align: left; padding: 0px 10%;">
+          <input class="checkbox" type="checkbox" id="checkbox-1" name="checkbox"/>
+          <label for="checkbox-1">Αποδέχομαι τους όρους του διαγωνισμού</label>
+          <input class="checkbox" type="checkbox" id="checkbox-2" name="checkbox"/>
+          <label for="checkbox-2">Αποδέχομαι την πολιτική προστασίας προσωπικών δεδομένων</label>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div style="position: absolute; z-index: 3; width: 100%; height: 100vh;  pointer-events: auto;">
+
+<div class="gridrow">
+  <div class="durex_logo">
+    <img src="images/durex_logo.png" class="imgx" style="float: right;">
+  </div>
+  <div class="menu_icon">
+
+<a href="#menu" class="menu-link"><span></span></a>
+<div class="menu">
+<ul>
+<li><a href="#top">Εισαγωγή</a></li>
+<li><a href="#contest">Διαγωνισμός</a></li>
+<li><a href="#gifts">Δώρα</a></li>
+<li><a href="#party">Πάρτυ</a></li>
+<li><a href="#video">Video</a></li>
+</ul>
+</div>
+
+  </div>  
+  <div class="login_register">
+    <div class="element" style="text-align: left;">
+      <img src="images/mini_heart.png" class="imgx" align="left" style="padding-right: 10px;">
+      <h4>
+        <a onclick="loginDivOpen()" style="cursor: pointer;">Login</a> or <a style="cursor: pointer;" onclick="registerDivOpen()">Register</a>
+      </h4>
+    </div>
+  </div>
+</div>
+
+<div class="gridrow mmb" style="padding-top: 5%;">
+  <div class="gridcolumn gridcolumn-8"></div>
+  <div class="gridcolumn gridcolumn-4" style="padding: 2% 0px; text-align: center;">
+    <h2>Σε 90 χρόνια ερωτικών αλλαγών <b>το DUREX είναι πάντα εδώ!</b>
+    Γιορτάζουμε <b>90 χρόνια επιτυχίας</b> στον έρωτα με μοναδικά δώρα
+    και προσκλήσεις για το πάρτι της χρονιάς!</h2>
+    <img src="images/90years.png" class="imgx" style="padding-top: 10%;">
+  </div>
+</div>
+
+
+  <div class="durex_packages">
+    <img src="images/durex_packages.png" class="imgx" >
+  </div>
+
+  <div class="cta" >
+    <h2> <b>ΔΙΑΛΕΞΕ</b> ΤΗΝ ΕΠΙΤΥΧΙΑ ΠΟΥ ΣΤΗΝ ΑΝΕΒΑΖΕΙ...<br>
+    ΤΗ ΔΙΑΘΕΣΗ ΚΑΙ <b>ΚΕΡΔΙΣΕ!</b><br>
+    <i class="fas fa-chevron-circle-down mdn" style="padding: 3%; font-size: 30px;"></i>
+    </h2>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+<div class="animated bounceIn animationDelayLong" style="position: absolute; z-index: 2; width: 100%; height: 200vh; background-image: url(images/kv_front.png); background-size: cover;  pointer-events: none;"></div>
+<div class="animated bounceInLeft " style="position: absolute; z-index: 1; width: 100%; height: 200vh; background-image: url(images/kv_back.png); background-size: cover; pointer-events: none; "></div>
+
+<div style="position: relative; width: 100%; height: 100vh; background-image: url(images/dots_bgrd.png); background-size: cover; background-position: bottom right; text-align: right; pointer-events: none; "></div>
+
+<div id="contest" style="position: relative; width: 100%; min-height: 70vh; overflow-y: auto; margin-top: 15vh; ">
+
+
+
+<!-- You lost -->
+  <div style="position: absolute; z-index: 10; width: 80%; background-color: rgba(0, 0, 0, 0.8); margin: 5% 10%; padding: 1%; text-align: center; color: #fff; font-size: 16px; border-radius: 10px;">
+    <h2 style="color: #fff;">Γιατίιιιι το τραγούδι αυτόοοο τώρα σου λέει άαακυρο;;;</h2>
+    <p>Μα δεν σε νοιάζει, δεν σε πειράζει θα ξαναπαίξεις αύριο! Που θα μπορείς και πάλι να πάρεις μέρος στον Διαγωνισμό!  Όπως και να χει μπήκες στην κλήρωση για τα μεγάλα Δώρα που χαρίζονται για τα 90 χρόνια της DUREX!</p>
+  </div>
+
+<!-- You win -->
+  <div style="position: absolute; z-index: 10; width: 80%; background-color: rgba(0, 0, 0, 0.8); margin: 5% 10%; padding: 1%; text-align: center; color: #fff; font-size: 16px; border-radius: 10px;">
+    <h2 style="color: #fff;">Το πε, το πε το DUREX πάντως ότι είσαι ο μεγάλος!</h2>
+    <h1 style="color: #fff;">Ναι, είσαι ο μεγάλος νικητής και μόλις ΚΕΡΔΙΣΕΣ!</h1>
+    <p>Το συλλεκτικό BEAT KIT & 1 διπλή VIP πρόσκληση για το μεγαλύτερο event της χρονιάς! Το πάρτι εορτασμού των 90 χρόνων της DUREX!</p>
+  </div>
+
+
+    <div class="gridrow mmbs">
+      <div class="gridcolumn gridcolumn-1"></div>
+      <div class="gridcolumn gridcolumn-5" style="padding: 0px 10%;">
+        <div class="player-gallery">
+          <div class="big-image">
+            <img id="player1" src="images/player1.png" class="imgx" />
+            <img id="player2" src="images/player2.png" class="imgx" />
+            <img id="player3" src="images/player3.png" class="imgx" />
+            <img id="player4" src="images/player4.png" class="imgx" />
+            <img id="player5" src="images/player5.png" class="imgx" />
+            <img id="player6" src="images/player6.png" class="imgx" />
+            <img id="player7" src="images/player7.png" class="imgx" />
+            <img id="player8" src="images/player8.png" class="imgx" />
+            <img id="player9" src="images/player9.png" class="imgx" />
+            <img id="player10" src="images/player10.png" class="imgx" />
+          </div>
+        </div>
+      </div>
+      <div class="gridcolumn gridcolumn-5">
+        <h2 style="padding-bottom: 20px;">Επέλεξε το τραγούδι που θέλεις και δες εάν κέρδισες!</h2>
+        <div class="player-gallery" style="text-align: left; line-height: 30px;">
+        <h2>
+        <ul>
+          <li><a href="#player1"><b>1930</b> Ας ερχόσουν για λίγο, μοναχά με DUREX πάλι</a></li>
+          <li><a href="#player2"><b>1940</b> Βάζει ο Δούτσε τη στολή του και το DUREX για σκουφί του</a></li>
+          <li><a href="#player3"><b>1950</b> Βίρα τις άγκυρες με DUREX όλοι</a></li>
+          <li><a href="#player4"><b>1960</b> Σήκω χόρεψε κουκλί μου, βάλε DUREX κι έλα δω</a></li>
+          <li><a href="#player5"><b>1970</b> Του αγοριού απέναντί πείτε του DUREX έχω</a></li>
+          <li><a href="#player6"><b>1980</b> Έλα μωράκι μου, το DUREX έφερα το μπλε</a></li>
+          <li><a href="#player7"><b>1990</b> Προκαλείς με DUREX προκαλείς</a></li>
+          <li><a href="#player8"><b>2000</b> Απ' αγάπη υπερβολική DUREX βάζω</a></li>
+          <li><a href="#player9"><b>2010</b> Σαν έρθει η μέρα με DUREX έλα μου και για καλημέρα</a></li>
+          <li><a href="#player10"><b>2019</b> Όχι δεν είναι μαμάαα, έβαλα DUREX ρε μαααν</a></li>
+        </ul>
+        </h2>
+      </div>
+      </div>
+      <div class="gridcolumn gridcolumn-1"></div>
+    </div>
+
+</div>
+
+
+
+
+<div id="gifts" style="background-image: url(images/giftsline_bgrd.jpg); background-size: contain;">
+  <img src="images/giftsline_elements.png" class="imgx animatable bounceIn ">
+</div>
+
+
+
+<div class="gridrow">
+  <div class="gridcolumn gridcolumn-12" style="padding: 2% 0px;text-align: center;">
+    <h1><b>1 BEAT KIT</b> <span style="font-size: 24px; font-weight: bold;">για τα 90 χρόνια επιτυχίας της DUREX</span></h1>
+    <h2>&</h2>
+    <h1><b>1 διπλή VIP πρόσκληση</b> <span style="font-size: 24px; font-weight: bold;">για το μεγάλο πάρτι εορτασμού των 90 χρόνων</span></h1>
+  </div>
+  <div class="gridcolumn gridcolumn-2"></div>
+  <div class="gridcolumn gridcolumn-2" style="color: #e1141b; font-weight: bold; font-size: 18px;">
+    <p><img src="images/mini_heart.png" align="left" style="padding-right: 10px;"> Durex Love 12pcs</p>
+    <p><img src="images/mini_heart.png" align="left" style="padding-right: 10px;"> Durex Play Gel 50ml</p>
+    <p><img src="images/mini_heart.png" align="left" style="padding-right: 10px;"> Durex Vibration Ring</p>
+    <img src="images/giftbox_left.png" class="imgx animationDelay animatable bounceInRight" style="padding-top: 20px;">
+  </div>
+  <div class="gridcolumn gridcolumn-4">
+    <img src="images/giftbox_big.png" class="imgx animatable bounceIn">
+  </div>
+  <div class="gridcolumn gridcolumn-2" style="color: #e1141b; font-weight: bold; font-size: 18px;">
+    <p><img src="images/mini_heart.png" align="left" style="padding-right: 10px;"> Durex Bullet Vibrator</p>
+    <p><img src="images/mini_heart.png" align="left" style="padding-right: 10px;"> Photo holder Durex</p>
+    <p><img src="images/mini_heart.png" align="left" style="padding-right: 10px;"> Kama Sutra Pocket <span style="font-size: 10px;">(TBD)</span></p>
+    <img src="images/giftbox_right.png" class="imgx animationDelay animatable bounceInLeft" style="padding-top: 20px;">
+  </div>
+  <div class="gridcolumn gridcolumn-2"></div>
+</div>
+
+
+<div class="gridrow">
+  <div class="gridcolumn gridcolumn-2"></div>
+  <div class="gridcolumn gridcolumn-8" style="padding: 1% 2%;">
+    <img src="images/giftpics.png" class="imgx animationDelayMed animatable fadeInUp">
+  </div>
+  <div class="gridcolumn gridcolumn-2"></div>
+  <div class="gridcolumn gridcolumn-12" style="text-align: center;">
+    <h1><b>4ημερο glamping</b> <span style="font-size: 24px; font-weight: bold;">στην Χαλκιδική για να κάνεις διακοπάρες με τους φίλους σου!</span></h1>
+  </div>
+</div>
+
+<div id="party" class="gridrow" style="margin-top: 15vh;">
+  <div class="gridcolumn gridcolumn-12" style="text-align: center;">
+    <img src="images/party_head.png" class="imgx">
+  </div>
+  <div class="gridcolumn gridcolumn-3"></div>
+  <div class="gridcolumn gridcolumn-6">
+    <img src="images/party_s4.png" class="imgx animationDelayMed animatable bounceInLeft" style="position: absolute; z-index: 3;">
+    <img src="images/party_s3.png" class="imgx animationDelay animatable fadeInUp" style="position: absolute; z-index: 2;">
+    <img src="images/party_s2.png" class="imgx  animatable bounceIn" style="position: absolute; z-index: 1;">
+    <img src="images/party_s1.png" class="imgx ">
+  </div>
+  <div class="gridcolumn gridcolumn-3"></div>
+  <div class="gridcolumn gridcolumn-12" style="text-align: center;">
+    <h1><b>ΓΙΑ ΠΡΟΣΚΛΗΣΕΙΣ</b></h1>
+    <h2><b>Λάβε μέρος στο παιχνίδι ή συντονίσου στον Athens DJ, Rock Fm<br>
+    ή στα social media της DUREX</b></h2>
+  </div>
+</div>
+
+
+
+<div id="video" style="background-image: url(images/video_line_bgrd.png); background-size: contain;">
+  <img src="images/video_line_front.png" class="imgx animatable fadeIn ">
+</div>
+
+
+<div style="height: 70vh;">
+  <div class="element">
+    <div class="gridrow">
+      <div class="gridcolumn gridcolumn-3"></div>
+      <div class="gridcolumn gridcolumn-6">
+        <img src="images/video.jpg" class="imgx">
+      </div>
+      <div class="gridcolumn gridcolumn-3"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="gridrow" style="background-color: #007dc5;">
+  <div class="gridcolumn gridcolumn-3"></div>
+  <div class="gridcolumn gridcolumn-6">
+    <img src="images/footer_durex_logo.png" class="imgx">
+  </div>
+  <div class="gridcolumn gridcolumn-3"></div>
+</div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="js/anim_index.js"></script>
+
+<script>
+$(document).ready(function () {
+  var link = $('.menu-link');
+  var menu = $('.menu');
+  var nav_link = $('.menu a');
+
+  link.click(function () {
+    link.toggleClass('menu-link_active');
+    menu.toggleClass('menu_active');
+  });
+
+  nav_link.click(function () {
+    link.toggleClass('menu-link_active');
+    menu.toggleClass('menu_active');
+  });
+});
+
+function loginDivClose() {
+  document.getElementById("login_div").style.display = "none";
+}
+function loginDivOpen() {
+  document.getElementById("login_div").style.display = "block";
+}
+
+function registerDivClose() {
+  document.getElementById("register_div").style.display = "none";
+}
+function registerDivOpen() {
+  document.getElementById("register_div").style.display = "block";
+}
+
+</script>
+
+
+
+</body>
+</html>
+
