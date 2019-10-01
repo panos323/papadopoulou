@@ -108,6 +108,13 @@ src="https://www.facebook.com/tr?id=219902615188843&ev=PageView
   <form  id="logout-button">
     <button style="cursor:pointer;" id="logOut">Logout</button>
   </form>
+  <br><br>
+  <?php echo $_SESSION["email"]; ?>
+  <h2>Κωδικός</h2>
+  <form id="submit-code">
+    <input type="text"  id="input-code"> <br>
+    <button style="cursor:pointer;" id="sumbitCode">Υποβολή</button>
+  </form>
 
   <?php } ?>
 

@@ -36,76 +36,7 @@ var iznogoud = (function () {
 	}
 	
 	
-	function trackPageView(page){
-		/**
-		fbq('trackCustom', 'virtualPageview', {
-			url: '<?=serverUrl?>'+page
-		});
-		**/
-		gtag('config', googleAnalyticsId, {'page_path': page});
 
-	}
-  
-	/* open /close screens */
-	function openWelcome(){
-		trackPageView('welcome');
-		closeAllScreens();
-		$('.navigation').removeClass("open");
-		$('#welcome').fadeIn('600');
-		
-		previousPage = 'welcome';
-	}
-	
-	function openPlay(){
-		trackPageView('play');
-		closeAllScreens();
-		$('#welcome').fadeOut('400', function(){
-			$('.navigation').removeClass("open");
-            $('#play').fadeIn('400');
-        });
-		previousPage = 'play';
-	}
-	
-	function openThanks(){
-		trackPageView('thanks');
-		closeAllScreens();
-        $('#play').fadeOut('400');
-        $('#thanks').fadeIn('400');
-		previousPage = 'thanks';
-	}
-	
-	function openFail(){
-		trackPageView('fail');
-		
-		$('#fail').fadeIn('600');
-		previousPage = 'fail';
-	}
-	
-	function openPresents(){
-		trackPageView('presents');		
-        closeAllScreens();
-		$('#welcome').fadeOut('400', function(){
-            $('#gifts').fadeIn('400');
-        });
-		$(".navigation").removeClass("open");
-		previousPage = 'welcome';
-//        $('.ntch').fadeIn('400', function(){
-//            $('#presentscontainer').fadeIn('600');
-//        });
-	}
-	
-	function openTerms(){
-		trackPageView('presents');
-		
-		var win=window.open(termsUrl, "_blank");
-		win.focus();
-	}
-	
-	function openInstructions(){
-		trackPageView('instructions');
-		
-		if( $('#instructions').css("display") == "none" ) $('#instructions').fadeIn('600');
-	}
 	
 	function closeInstructions(){
 		$('#instructions').fadeOut('400');
@@ -418,7 +349,15 @@ var iznogoud = (function () {
         });
     }
 	
-	
+	function checkCodeForm() {
+		var code = $('#input-code').val();
+		var pass = true;
+		if (code.length != 8) {
+			$('#input-code').css("border", "1px solid red");
+			pass = false;
+		} 
+		return pass;
+	}
 	
 	
 
@@ -500,6 +439,11 @@ var iznogoud = (function () {
 		$('#logout-button').on("submit", function(e) {
 			e.preventDefault();
 			logoutBtn();
+		});
+
+		$('#submit-code').on("submit", function(e) {
+			e.preventDefault();
+			submitCodeBtn();
 		});
 		
 
@@ -602,6 +546,33 @@ var iznogoud = (function () {
 	
 			return pass;
 		}
+
+		function submitCodeBtn() {
+			if (checkCodeForm()) { 
+				var request = $.ajax({
+					url: "index.php",
+					type: "POST",
+					data: { 
+						page: 'ajax',
+						code: $("#input-code").val(),
+						action: 'sumbitCode'
+					},
+					success: function(ans){
+						
+					},
+					error : function(err,xhr,status) {
+						console.log(err);
+						console.log(xhr);
+						console.log(status);
+					}
+				});
+
+			request.done(function(ans) { 
+				alert(ans);
+				$("#submit-code")[0].reset();
+			});
+			}
+		}
 		
 
 		function logoutBtn() {
@@ -680,7 +651,6 @@ var iznogoud = (function () {
 
 
 		//on document ready, send pageview of the landing page
-		trackPageView("welcome");
 
 		$('body').on('click', '.sbmt_btn',function(){
         	submitGame();
