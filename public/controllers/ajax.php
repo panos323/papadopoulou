@@ -113,7 +113,6 @@ $db = mysqli_connect('localhost','root','','papadopoulou');
 							$query = "INSERT INTO ".mysql_table_users." (fullName, email,  password, mobile, newsletter, created) VALUES ('".$full_name."', '".$email."', '".$password."', '".$phone."',  '".$newsletter."', NOW() )";
 							dbQuery($query);
 							echo "register_success";
-							$_SESSION['registeredUser'] = true;
 							$_SESSION['email'] = $email;
 						}else{
 							echo "register_email_exists";
@@ -138,26 +137,16 @@ $db = mysqli_connect('localhost','root','','papadopoulou');
 				if ($responseData_login->success) {
 					$email = dbEscape($_POST['email']);
 					$password= dbEscape($_POST['password']);
-					$query2 = "SELECT * FROM ".mysql_table_users." WHERE email = '".$email."' LIMIT 1 ";
+					$query2 = "SELECT * FROM ".mysql_table_users." WHERE email = '".$email."' LIMIT 1";
 								
-					if( dbQuery( $query2 ) ){
-						if(	dbGetNumRows() > 0 ){
-							$row = dbFetchAssoc();
-							$hash =  $row['password'];
-							if (password_verify($password, $hash)) {
-								echo "rightCrendetials";
-								$_SESSION['loggedUser'] = true;
-								$_SESSION['email'] = $email;
-							} else {
-								echo "wrongCrendetials";
-							}
-						
-						} else {
-							echo "wrongCrendetials2";
-						}
-					
+					$result = mysqli_query($db, $query2);
+					$row = mysqli_fetch_assoc($result);
+
+					if (password_verify($password, $row['password'])) {
+						echo "rightCrendetials";
+						$_SESSION['email'] = $email;
 					} else {
-						echo "wrongCrendetials3";
+						echo "wrongCrendetials";
 					}
 				}
 			
@@ -165,165 +154,7 @@ $db = mysqli_connect('localhost','root','','papadopoulou');
 		break;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-		/*
-		case 'Code':
-			$instant_win = 0;
-			$print = -1;
-			$code = dbEscape($_POST['code']);
-			$user = dbEscape($_SESSION['email']);
-			
-			if(isset($code) && strlen($code) == 8 && isset($user) && strlen($user) > 2){
-
-				$code = str_replace('<', "", $code);
-				$code = str_replace('>', "", $code);
-				$code = str_replace(".", "", $code);
-				$code = str_replace(":", "", $code);
-				$code = str_replace("/", "", $code);
-				$code = str_replace("\\", "", $code);
-				$code = str_replace("-", "", $code);
-				$code = str_replace("'", "", $code);
-				$code = str_replace('"', "", $code);
-				$code = str_replace(" ", "", $code);
-				$code = str_replace("a", "A", $code);
-				$code = str_replace("α", "A", $code);
-				$code = str_replace("Α", "A", $code);
-				$code = str_replace("b", "B", $code);
-				$code = str_replace("β", "B", $code);
-				$code = str_replace("Β", "B", $code);
-				$code = str_replace("c", "C", $code);
-				$code = str_replace("ψ", "C", $code);
-				$code = str_replace("d", "D", $code);
-				$code = str_replace("δ", "D", $code);
-				$code = str_replace("Δ", "D", $code);
-				$code = str_replace("e", "E", $code);
-				$code = str_replace("ε", "E", $code);
-				$code = str_replace("Ε", "E", $code);
-				$code = str_replace("f", "F", $code);
-				$code = str_replace("φ", "F", $code);
-				$code = str_replace("Φ", "F", $code);
-				$code = str_replace("g", "G", $code);
-				$code = str_replace("γ", "G", $code);
-				$code = str_replace("Γ", "G", $code);
-				$code = str_replace("h", "H", $code);
-				$code = str_replace("η", "H", $code);
-				$code = str_replace("Η", "H", $code);
-				$code = str_replace("i", "I", $code);
-				$code = str_replace("ι", "I", $code);
-				$code = str_replace("Ι", "I", $code);
-				$code = str_replace("j", "J", $code);
-				$code = str_replace("ξ", "J", $code);
-				$code = str_replace("Ξ", "J", $code);
-				$code = str_replace("k", "K", $code);
-				$code = str_replace("κ", "K", $code);
-				$code = str_replace("Κ", "K", $code);
-				$code = str_replace("λ", "L", $code);
-				$code = str_replace("Λ", "L", $code);
-				$code = str_replace("l", "L", $code);
-				$code = str_replace("m", "M", $code);
-				$code = str_replace("μ", "M", $code);
-				$code = str_replace("Μ", "M", $code);
-				$code = str_replace("n", "N", $code);
-				$code = str_replace("ν", "N", $code);
-				$code = str_replace("Ν", "N", $code);
-				$code = str_replace("o", "O", $code);
-				$code = str_replace("ο", "O", $code);
-				$code = str_replace("Ο", "O", $code);
-				$code = str_replace("p", "P", $code);
-				$code = str_replace("π", "P", $code);
-				$code = str_replace("Π", "P", $code);
-				$code = str_replace("q", "Q", $code);
-				$code = str_replace("ρ", "R", $code);
-				$code = str_replace("Ρ", "R", $code);
-				$code = str_replace("r", "R", $code);
-				$code = str_replace("s", "S", $code);
-				$code = str_replace("ς", "S", $code);
-				$code = str_replace("σ", "S", $code);
-				$code = str_replace("Σ", "S", $code);
-				$code = str_replace("t", "T", $code);
-				$code = str_replace("τ", "T", $code);
-				$code = str_replace("Τ", "T", $code);
-				$code = str_replace("u", "U", $code);
-				$code = str_replace("υ", "U", $code);
-				$code = str_replace("v", "V", $code);
-				$code = str_replace("w", "W", $code);
-				$code = str_replace("ω", "W", $code);
-				$code = str_replace("x", "X", $code);
-				$code = str_replace("χ", "X", $code);
-				$code = str_replace("Χ", "X", $code);
-				$code = str_replace("y", "Y", $code);
-				$code = str_replace("Υ", "Y", $code);
-				$code = str_replace("z", "Z", $code);
-				$code = str_replace("ζ", "Z", $code);
-				$code = str_replace("Ζ", "Z", $code);
-
-				$seql = "SELECT code FROM registers WHERE code = '".$code."' ";
-
-				$exists =  dbQuery($seql);
-				$num_rows1 = dbGetNumRows($exists);
-				
-				//if not registered code
-				if (!$num_rows1) {
-					$sql = "SELECT * FROM codes WHERE code = '".$code."' ";
-					$res = dbQuery($sql);
-					$num_rows = dbGetNumRows($res);
-					$res2 = dbFetchAssoc($res);
-
-					//if exists in codes
-					if($num_rows) {
-						$print = $res2['code'];
-						$msql = "INSERT INTO `registers`(`usermail`, `code`, `instant_win`) VALUES ('".$user."', '".$code."', '".$print."')"; //insert into register 
-						dbQuery($msql);
-						$gifts = 0;
-						
-						if($print > 0 ){//if instant win.. instant winner mail notification
-							$res3 = "SELECT * FROM `users` WHERE `email` = '".$user."' ";
-							$res4 = dbQuery($res3);
-
-							switch($print){
-								case 1: $gifts = 'Καραόκε Μικρόφωνο';
-								break;
-								case 2: $gifts = 'GoPro Camera';
-								break;
-								case 3: $gifts = 'Polaroid Camera';
-								break;
-								case 4: $gifts = 'Netflix Δωροκάρτα';
-								break;
-								case 5: $gifts = 'Ηχείο AKAI Bluetooth';
-								break;
-								default: $gifts = 'no';
-								break;
-							};
-
-					} else {
-						echo "code_not_win";
-					}
-
-				} else {
-					echo "code_wrong";
-				}
-			} else {
-				echo "code_exists";
-			}
-		}//if isset code
-
-		break;
-		*/
-
-
-
-case 'sumbitCode':
+		case 'sumbitCode':
 
 
         $instant_win = 0;
@@ -437,24 +268,30 @@ case 'sumbitCode':
 					if($print > 0){//if instant win.. instant winner mail notification
 						$res3 = mysqli_query($db, "SELECT * FROM `users` WHERE `email` = '$user'");
 						
-						echo "Ο κωδικός κερδίζει";
+						
 
-						/*
+						
 						switch($print){
 							case 1: $gifts = 'Καραόκε Μικρόφωνο';
+							echo "Κέρδισες Καραόκε Μικρόφωνο";
 							break;
 							case 2: $gifts = 'GoPro Camera';
+							echo "Κέρδισες GoPro Camera";
 							break;
 							case 3: $gifts = 'Polaroid Camera';
+							echo "Κέρδισες Polaroid Camera";
 							break;
 							case 4: $gifts = 'Netflix Δωροκάρτα';
+							echo "Κέρδισες Netflix Δωροκάρτα";
 							break;
 							case 5: $gifts = 'Ηχείο AKAI Bluetooth';
+							echo "Κέρδισες Ηχείο AKAI Bluetooth";
 							break;
 							default: $gifts = 'no';
+							echo "Δεν κέρδισες";
 							break;
 						};
-						*/
+						
                     	$res3 = mysqli_fetch_assoc($res3);
 						// $from = '2plogemista@socialab.gr';
 						// $preferences = ['input-charset' => 'UTF-8', 'output-charset' => 'UTF-8'];
@@ -473,59 +310,39 @@ case 'sumbitCode':
 						// }
 						// $text = "Ο ".$res3['fullName']." κέρδισε ".$gifts." e-mail: ".$res3['email']." : ".$res3['mobile']." Κωδικός: ".$code;
 						// mail('2plogemista@socialab.gr',$encoded_subject,$text,$headers);
+						$_SESSION['userEnterCode'] = true;
                 } else {
 					echo  "Ο κωδικός δεν κερδίζει";
+					$_SESSION['userEnterCode'] = true;
 				}               
-        } else {
-			echo "Ο κωδικός δεν υπάρχει";
+			} else {
+				echo "Ο κωδικός δεν υπάρχει";
+			}
+    	} else {
+			echo "Ο κωδικός έχει χρησιμοποηθεί";
 		}
-    }; //if registered code
     }; // if isset code and session user
        // print trim(json_encode($print, JSON_FORCE_OBJECT),'"');
-        break;
+		break;
+		
+		case 'sumbitForGift':
+			$email = $_SESSION['email'];
 
+			$query2 = "SELECT * FROM usersforgift WHERE email = '".$email."'";
+			if( dbQuery( $query2 ) ){
+				if(	dbGetNumRows() > 0 ){
+					echo "already_played";
+				} else {
+					$query = "INSERT INTO usersforgift (email, date) VALUES ('".$email."', NOW() )";
+					if (dbQuery($query)) {
+						echo "game_over";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+					} else {
+						echo "game_problem";
+					}
+				}
+			}
+		break;
 
 		case 'logOutUser':
 			session_start();

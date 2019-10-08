@@ -369,9 +369,6 @@ p.error-text {
     border-color: #4ed7ff;
 }
 
-
-
-
 @media only screen and (max-width: 1001px) {
     .gridrow {
         margin-bottom: 0px;

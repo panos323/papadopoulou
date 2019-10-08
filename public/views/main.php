@@ -63,13 +63,24 @@ src="https://www.facebook.com/tr?id=219902615188843&ev=PageView
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+<style>
+.logout-button{
+  display:none;
+}
+</style>
 </head>
 
 <body>
 
 <!--register-->
 
-<?php if (!isset($_SESSION['registeredUser']) && !isset($_SESSION['loggedUser'])) { ?>
+<div id="#thanksMsg">
+  <form  class="logout-button">  
+    <button style="cursor:pointer;" id="logOut">Τέλος</button>
+  </form>
+</div>
+
+<?php if (!isset($_SESSION['email'])) { ?>
 
 <form id="register_form">
 
@@ -97,15 +108,15 @@ src="https://www.facebook.com/tr?id=219902615188843&ev=PageView
 
 <form id="login_form" style="text-align:left;">
     <h1 style="padding: 3%; font-weight: 300;">Σύνδεση</h1>
-    <input type="email" name="email_login" id="email_login" placeholder="email"><br>
-    <input type="password" name="password_login" id="password_login" placeholder="password"><br><br>
+    <input type="email" id="email_login" placeholder="email"><br>
+    <input type="password" id="password_login" placeholder="password"><br><br>
     <div id="login_recaptcha" class="g-recaptcha" data-sitekey="6Lcv-LoUAAAAAC_Qs8MAHEME8brrAPUYlgIuywQ0"></div><br><br>
     <button id="login-btn" style="cursor:pointer;">Σύνδεση</button>
 </form>
    
 
-<?php } else { ?>
-  <form  id="logout-button">
+<?php } else if(isset($_SESSION['email']) && !isset($_SESSION['userEnterCode'])) { ?>
+  <form  class="logout-button">
     <button style="cursor:pointer;" id="logOut">Logout</button>
   </form>
   <br><br>
@@ -116,7 +127,13 @@ src="https://www.facebook.com/tr?id=219902615188843&ev=PageView
     <button style="cursor:pointer;" id="sumbitCode">Υποβολή</button>
   </form>
 
-  <?php } ?>
+  <?php } else  if(isset($_SESSION['email']) && isset($_SESSION['userEnterCode'])) { ?>
+
+  <form id="bigGiftForm">
+    <button id="sumbitForGift">Παίξε για το μεγάλο δώρο</button>
+  </form>
+
+    <?php } ?>
 
 
   <script>

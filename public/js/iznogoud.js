@@ -436,7 +436,7 @@ var iznogoud = (function () {
 			submitLoginForm();
 		});
 
-		$('#logout-button').on("submit", function(e) {
+		$('.logout-button').on("submit", function(e) {
 			e.preventDefault();
 			logoutBtn();
 		});
@@ -444,6 +444,11 @@ var iznogoud = (function () {
 		$('#submit-code').on("submit", function(e) {
 			e.preventDefault();
 			submitCodeBtn();
+		});
+
+		$("#bigGiftForm").on("submit", function(e) {
+			e.preventDefault();
+			submitForGift();
 		});
 		
 
@@ -498,6 +503,7 @@ var iznogoud = (function () {
 					success: function(data) {
 						if(data == "wrongCrendetials"){
 							//display errors
+							console.log(data);
 							$("#ErrorLoggedIn").html("email or password are wrong...");
 						} else if (data == "rightCrendetials") {
 							$("#register_form")[0].reset();
@@ -506,9 +512,6 @@ var iznogoud = (function () {
 									document.location.reload()
 							}, 1000);
 						}
-					   console.log("SUCCESS");
-					   console.log(data);
-					   $("#loginForm")[0].reset();
 					},
 					error: function(err,xhr) {
 						console.log("ERROR");
@@ -519,7 +522,7 @@ var iznogoud = (function () {
 				request.done(function(ans) {
 					if (ans) {
 						//openThanks();
-						$("#loginForm")[0].reset();
+						console.log(ans);
 					}
 				});
 			}
@@ -558,7 +561,9 @@ var iznogoud = (function () {
 						action: 'sumbitCode'
 					},
 					success: function(ans){
-						
+						setTimeout(function() {
+							document.location.reload();
+					}, 1000);
 					},
 					error : function(err,xhr,status) {
 						console.log(err);
@@ -573,6 +578,38 @@ var iznogoud = (function () {
 			});
 			}
 		}
+
+		function submitForGift() {
+			var request = $.ajax({
+				url: "index.php",
+				type: "POST",
+				data: { 
+					page: 'ajax',
+					action: 'sumbitForGift'
+				},
+				success: function(ans){
+					if (ans == "game_over") {
+						$("#thanksMsg").css("display", "block");
+						alert("'Ελαβες μέρος");
+						$(".logout-button").css("display", "block");
+					} else if (ans == "game_problem") {
+						
+					} else if (ans == "already_played") {
+						alert("'Εχεις ήδη λάβει μέρος");
+						$(".logout-button").css("display", "block");
+					}
+				},
+				error : function(err,xhr,status) {
+					console.log(err);
+					console.log(xhr);
+					console.log(status);
+				}
+			});
+
+			request.done(function(ans) { 
+				
+			});
+		}
 		
 
 		function logoutBtn() {
@@ -584,6 +621,9 @@ var iznogoud = (function () {
 				data: {
 					page: 'ajax',
 					action: 'logOutUser',
+				},
+				success: function() {
+					$(".logout-button").css("display", "none");
 				}
 			});
 
